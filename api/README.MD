@@ -1,0 +1,1 @@
+API que vamos a usar para traer todos los juegos: "https://api.rawg.io/api/games?key=84848d7503e94665adfaf7330e3f25ff"
