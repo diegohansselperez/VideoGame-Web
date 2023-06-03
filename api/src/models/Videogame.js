@@ -10,7 +10,6 @@ module.exports = (sequelize) => {
       unique: true,
       allowNull: false,
       primaryKey: true,
-      // autoIncrement: true,
     },
     nombre: {
       type: DataTypes.STRING,
@@ -18,11 +17,11 @@ module.exports = (sequelize) => {
       unique: true,
     },
     descripcion: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,//me permite agregar mas de 255 caracteres
       allowNull: false,
     },
     plataformas: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
     imagen: {
@@ -39,7 +38,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     rating: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
       allowNull:false,
     },
     created: {

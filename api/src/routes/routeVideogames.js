@@ -17,4 +17,5 @@ routerGames.get("/:id", getIdVideogame);
 //Toda la información debe ser recibida por body
 routerGames.post("/", createVideogame);
 
+
 module.exports = routerGames;

@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { Videogame, Genre } = require("../db");
+const { Videogame } = require("../db");
 
 const { getGamesApi } = require("../controllers/getGamesApi");
 const { getGameById } = require("../controllers/getGameById");
@@ -55,61 +55,34 @@ const createVideogame = async (req, res) => {
   } = req.body;
 
   try {
-    // Buscar el videojuego existente
-    let [existingGame] = await Videogame.findAll({
+    let newGameCreated = await Videogame.findOrCreate({
       where: {
         nombre: nombre,
       },
-    });
-
-    if (!existingGame) {
-      // Crear el videojuego si no existe
-      existingGame = await Videogame.create({
-        nombre,
+      defaults: {
         descripcion,
         plataformas,
         imagen,
         fecha_de_lanzamiento,
         rating,
-        genero: [genero],
-      });
-    } else {
-      // Actualizar el array de géneros del videojuego existente
-      const updatedGenres = existingGame.genero || [];
-      if (!updatedGenres.includes(genero)) {
-        updatedGenres.push(genero);
-        existingGame.genero = updatedGenres;
-        await existingGame.save();
-      }
-    }
+        genero,
+      },
+    });
 
-    res.status(200).send(existingGame);
-    // let newGameCreated = await Videogame.findOrCreate({
-    //   where: {
-    //     nombre: nombre,
-    //   },
-    //   defaults: {
-    //     descripcion,
-    //     plataformas,
-    //     imagen,
-    //     fecha_de_lanzamiento,
-    //     rating,
-    //     genero,
-    //   },
-    // });
-
-    // res.status(200).send(newGameCreated);
+    res.status(200).send(newGameCreated);
   } catch (error) {
     if (error.name === "SequelizeUniqueConstraintError") {
       res.status(404).send("A game with this name already exists");
     } else {
-      res.status(404).json({ error: error.message });
+      res.status(400).json({ error: error.message });
     }
   }
 };
+
 
 module.exports = {
   getAllVideogames,
   getIdVideogame,
   createVideogame,
+
 };

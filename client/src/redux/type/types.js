@@ -3,3 +3,6 @@ export const GET_GAME_BY_NAME = "GET_GAME_BY_NAME";
 export const TO_HOME_PAGE = "TO_HOME_PAGE";
 export const GET_GENRES = "GET_GENRES";
 export const POST_CREATE_GAME = "POST_CREATE_GAME";
+export const GET_ALL_PLATAFORMS = "GET_ALL_PLATAFORMS";
+
+export const DELETE_GAME = "DELETE_GAME";

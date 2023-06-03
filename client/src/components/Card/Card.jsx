@@ -5,13 +5,18 @@ import { useEffect, useState } from "react";
 
 const Card = (props) => {
   const [isTrue, setIsTrue] = useState(false);
-  const { id, name, image, plataforms, genero } = props;
+  const [isClick, setIsClick] = useState(false);
+  const { id, name, image, plataforms, genero, handleDelete } = props;
 
   useEffect(() => {
     setTimeout(() => {
       setIsTrue(true);
     }, 1000);
   }, []);
+
+  const clickToDelete = () => {
+    setIsClick(true);
+  };
 
   return (
     <>
@@ -51,13 +56,28 @@ const Card = (props) => {
                 )}
               </div>
             </div>
-          </main>
+          </main>{" "}
+          {isClick ? (
+            <div>
+              <p>este es el boton click</p>
+              <div>
+                <button type="button" onClick={() => handleDelete(id)}>
+                  Si
+                </button>
+                <button type="button" onClick={() => setIsClick(false)}>
+                  No
+                </button>
+              </div>
+            </div>
+          ) : null}
           <footer className="button-wrapper">
-            <Link to={`/detail/${id}`} >
+            <Link to={`/detail/${id}`}>
               <button className="btn-outline">DETAIL</button>
             </Link>
 
-            <button className="btn-fill">DELETE</button>
+            <button className="btn-fill" onClick={clickToDelete}>
+              DELETE
+            </button>
           </footer>
         </div>
       ) : (

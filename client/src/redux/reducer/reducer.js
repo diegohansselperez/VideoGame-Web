@@ -1,15 +1,17 @@
 import {
   GET_VIDEOGAMES,
   GET_GAME_BY_NAME,
-  TO_HOME_PAGE,
   GET_GENRES,
   POST_CREATE_GAME,
+  GET_ALL_PLATAFORMS,
+  DELETE_GAME
 } from "../type/types";
 
 const initialState = {
   allVideogames: [],
   allGamesOrigin: [],
   allGenres: [],
+  allPlataforms: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -31,20 +33,27 @@ const reducer = (state = initialState, action) => {
     case POST_CREATE_GAME:
       return {
         ...state,
-        allVideogames: [{ ...action.payload }, ...state.allVideogames],
+        allVideogames: [...action.payload,...state.allVideogames],
       };
 
-    case TO_HOME_PAGE:
-      return {
+      case DELETE_GAME: 
+      const gameDelete = state.allVideogames.filter(game => String(game.id) !== String(action.payload))
+      return{
         ...state,
-        allVideogames: [],
-      };
+        allVideogames: gameDelete
+      }
 
     case GET_GENRES:
       return {
         ...state,
         allGenres: action.payload,
       };
+      case GET_ALL_PLATAFORMS:
+        return {
+          ...state,
+          allPlataforms: action.payload
+        }
+    
     default:
       return state;
   }

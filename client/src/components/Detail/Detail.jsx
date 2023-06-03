@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { Pinwheel } from "@uiball/loaders";
 
@@ -31,6 +31,9 @@ const Detail = () => {
   return (
     <div className="containerDetail">
       <h2>Detail Character</h2>
+      <Link to={"/home"}>
+      To Home
+      </Link>
       {detail.id ? (
         <div className="cardDetail">
           <div>
