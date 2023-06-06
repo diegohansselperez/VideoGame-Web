@@ -2,7 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import { Pinwheel } from "@uiball/loaders";
+import style from "./Detail.module.css";
+import Loading from "../Loading/Loading";
 
 const Detail = () => {
   const [detail, setDetail] = useState({});
@@ -29,56 +30,90 @@ const Detail = () => {
   }, [id]);
 
   return (
-    <div className="containerDetail">
-      <h2>Detail Character</h2>
-      <Link to={"/home"}>
-      To Home
-      </Link>
-      {detail.id ? (
-        <div className="cardDetail">
-          <div>
-            <h2>{detail.nombre}</h2>
-            <h3>Descripcion: </h3>
-            {
-              <h5>
-                {detail.descripcion
-                  .replace(/<p>/g, "")
-                  .replace(/<\/p>/g, "")
-                  .split(".")
-                  .slice(0, 3)
-                  .join(".")}
-              </h5>
-            }
-            <h3>Fecha de lanzamiento: </h3>
-            <h3>{detail.fecha_de_lanzamiento}</h3>
-            <h3>Genero: </h3>
-            <div>
-              {Array.isArray(detail.genero) ? (
-                detail.genero?.map((genr) => <h3 key={genr.id} >{genr.name}</h3>)
-              ) : (
-                <h3 >{detail.genero}</h3>
-              )}
-            </div>
-            <h3>Plataformas: </h3>
+    <div className={style.containerDetail}>
+      <div className={style.detailTitle}>
+        <h2>DETAIL VIDEOGAME</h2>{" "}
+      </div>
+      <div className={style.containLink}>
+        {" "}
+        <Link to={"/home"}>
+          <button className={style.btnLink}>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            To Home
+          </button>
+        </Link>
+      </div>
 
-            {Array.isArray(detail.plataformas) ? (
-              detail.plataformas?.map((plataforma, index) => {
-                return <h3 key={index}>{plataforma}</h3>;
-              })
-            ) : (
-              <h3>{detail.plataformas}</h3>
-            )}
+      {detail.id ? (
+        <div className={style.cardDetail}>
+          <h2 className={style.h2}>{detail.nombre}</h2>
+          <div className={style.imgDiv}>
+            {" "}
+            <img src={detail.imagen} alt={detail.nombre} />
           </div>
 
-          <img
-            src={detail.imagen}
-            width="300px"
-            height="280px"
-            alt={detail.nombre}
-          />
+          <div className={style.containText}>
+            
+            <section>
+              <div className={style.descripcionStyle}>
+                <h3>Descripcion: </h3>
+                {
+                  <h5>
+                    {detail.descripcion
+                      .replace(/<p>/g, "")
+                      .replace(/<\/p>/g, "")
+                      .split(".")
+                      .slice(0, 3)
+                      .join(".") + "."}
+                  </h5>
+                }
+              </div>
+            </section>
+
+            <section>
+              <div className={style.fechaLanzaStyle}>
+                <h3>Fecha de lanzamiento: </h3>
+                <h3>{detail.fecha_de_lanzamiento}</h3>
+              </div>
+
+              <div className={style.generoStyle}>
+                <h3>Genero: </h3>
+                <div>
+                  {Array.isArray(detail.genero) ? (
+                    detail.genero?.map((genr) => (
+                      <h5 key={genr.id}>~ {genr.name}</h5>
+                    ))
+                  ) : (
+                    <h5>{detail.genero}</h5>
+                  )}
+                </div>
+              </div>
+
+              <div className={style.platStyle}>
+                <h3>Plataformas: </h3>
+                <div>
+                  {" "}
+                  {Array.isArray(detail.plataformas) ? (
+                    detail.plataformas?.map((plataforma, index) => {
+                      return <h5 key={index}>~ {plataforma}</h5>;
+                    })
+                  ) : (
+                    <h5>{detail.plataformas}</h5>
+                  )}
+                </div>
+              </div>
+            </section>
+
+
+          </div>
         </div>
       ) : (
-        <Pinwheel size={35} lineWeight={3.5} speed={1} color="black" />
+        <div className={style.loading}>
+          <Loading />
+        </div>
       )}
     </div>
   );

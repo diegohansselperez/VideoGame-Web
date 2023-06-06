@@ -1,0 +1,90 @@
+.containCreate {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  background-image: linear-gradient(
+    to right top,
+    #30e8bf,
+    #78d97f,
+    #acc445,
+    #daa822,
+    #ff8235
+  );
+  height: 100vh;
+  padding-bottom: 30px;
+}
+
+.containLink_Title {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+}
+
+.btnLink {
+  position: relative;
+  color: rgb(233, 233, 233);
+  padding: 7px 20px;
+  font-size: 17px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  background-color: rgb(202, 40, 0);
+  text-decoration: none;
+  transition: 0.4s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.btnLink:hover {
+  color: white;
+  box-shadow: 0px 0px 15px rgb(202, 40, 0);
+}
+
+.btnLink span {
+  position: absolute;
+  background: #fff;
+  transition: 0.4s ease;
+}
+
+.btnLink span:nth-child(1) {
+  width: 100%;
+  height: 1px;
+  top: 0;
+  left: -100%;
+}
+.btnLink span:nth-child(2) {
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  right: -100%;
+}
+.btnLink span:nth-child(3) {
+  width: 1px;
+  height: 100%;
+  bottom: -100%;
+  left: 0;
+}
+.btnLink span:nth-child(4) {
+  width: 1px;
+  height: 100%;
+  top: -100%;
+  right: 0;
+}
+
+.btnLink:hover span:nth-child(1) {
+  left: 0;
+}
+
+.btnLink:hover span:nth-child(2) {
+  right: 0;
+}
+
+.btnLink:hover span:nth-child(3) {
+  bottom: 0;
+}
+
+.btnLink:hover span:nth-child(4) {
+  top: 0;
+}

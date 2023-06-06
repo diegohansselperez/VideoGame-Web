@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postCreateGame } from "../../redux/actions/actions.js";
-//import validate from "./validate.js";
+import validate from "./validate.js";
+import style from "./Form.module.css";
 
 const Form = ({ allGenres, allPlataforms }) => {
   //tengo que traerme todas los generos de la db almacenados
@@ -16,6 +17,7 @@ const Form = ({ allGenres, allPlataforms }) => {
     genero: [],
     rating: 0,
   });
+  
   const [error, setError] = useState({});
 
   const dispatch = useDispatch();
@@ -34,39 +36,9 @@ const Form = ({ allGenres, allPlataforms }) => {
     );
   };
 
-  const validate = (game) => {
-    const errorForm = {};
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-    if (createGame.nombre.length < 2) {
-      errorForm.nombre =
-        "El nombre ingresado no puede contener mas de 2 caracteres";
-    }
-
-    if (!dateRegex.test(createGame.fecha_de_lanzamiento)) {
-      errorForm.fecha_de_lanzamiento =
-        "Por favor, ingresa una fecha válida en el formato YYYY-MM-DD.";
-    }
-    if (createGame.descripcion.length >= 254) {
-      errorForm.descripcion =
-        "La descripcion tiene que ser mayor a 255 caracteres";
-    }
-    if (createGame.rating <= 0 || createGame.rating >= 5) {
-      errorForm.rating = "Rating tiene que ser mayor a 0 y menor o igual a 5";
-    }
-    if (createGame.genero.length <= 1) {
-      errorForm.genero = "el juego debe de tener al menos un tipo de genero";
-    }
-    if (createGame.plataformas.length <= 1) {
-      errorForm.plataformas =
-        "el juego debe de tener al menos un tipo de plataforma";
-    }
-
-    return errorForm;
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = await validate(createGame);
+    const validationErrors = validate(createGame);
     setError(validationErrors);
     if (Object.values(error).length > 0) {
       return alert(
@@ -90,6 +62,8 @@ const Form = ({ allGenres, allPlataforms }) => {
   };
 
   //agregar a Plataformas
+  //!Leer esto
+  //En resumen, esta función se encarga de manejar la selección de plataformas en un formulario. Verifica si la plataforma seleccionada es válida y no está repetida en la matriz existente de plataformas del estado createGame. Si se cumplen ambas condiciones, actualiza el estado createGame agregando la nueva plataforma seleccionada.
   const handleSelectPlataforms = (e) => {
     if (
       e.target.value !== "plataformas" &&
@@ -130,111 +104,150 @@ const Form = ({ allGenres, allPlataforms }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="">Nombre: </label>
-        <input
-          type="text"
-          onChange={onInputChange}
-          name="nombre"
-          value={createGame.nombre}
-          placeholder="Nombre del juego..."
-        />
-        {error.nombre && <span>{error.nombre}</span>}
-        <label htmlFor="">Imagen: </label>
-        <input
-          type="text"
-          onChange={onInputChange}
-          name="imagen"
-          value={createGame.imagen}
-          placeholder="URL de la imagen..."
-        />
-        {error.imagen && <span>{error.imagen}</span>}
-        <label htmlFor="">Descripcion: </label>
-        <input
-          type="text"
-          onChange={onInputChange}
-          name="descripcion"
-          value={createGame.descripcion}
-          placeholder="Descripcion..."
-        />
-        {error.descripcion && <span>{error.descripcion}</span>}
-        <select
-          className="form-select"
-          name="plataformas"
-          onChange={handleSelectPlataforms}
-        >
-          <option defaultValue>Seleccionar Plataforma</option>
-          {allPlataforms?.map((plat, index) => {
-            return (
-              <option key={index} value={plat.name}>
-                {plat.name}
-              </option>
-            );
-          })}
-        </select>
-        <ul>
-          {createGame.plataformas?.map((plat, index) => (
-            <li
-              value={plat}
-              onDoubleClick={() => handleDeletePlataforms(plat)}
-              style={{ cursor: "pointer" }}
-              key={index}
-            >
-              {plat}
-            </li>
-          ))}
-        </ul>
-        {error.plataformas && <span>{error.plataformas}</span>}
-        <label htmlFor="">Fecha de lanzamiento: </label>
-        <input
-          type="text"
-          onChange={onInputChange}
-          name="fecha_de_lanzamiento"
-          value={createGame.fecha_de_lanzamiento}
-          placeholder="Fecha de lanzamiento"
-        />
-        {error.fecha_de_lanzamiento && (
-          <span>{error.fecha_de_lanzamiento}</span>
-        )}
-        <select
-          className="form-select "
-          name="genero"
-          onChange={handleSelectGenre}
-        >
-          <option defaultValue>Select Genero</option>
-          {allGenres?.map((genre, index) => {
-            return (
-              <option key={index} value={genre.name}>
-                {genre.name}
-              </option>
-            );
-          })}
-        </select>
-        <ul>
-          {createGame.genero?.map((gener, index) => (
-            <li
-              value={gener}
-              onDoubleClick={() => handleDeleteGenre(gener)}
-              style={{ cursor: "pointer" }}
-              key={index}
-            >
-              {gener}
-            </li>
-          ))}
-        </ul>
-        {error.genero && <span>{error.genero}</span>}
-        <label htmlFor="">Rating: </label>
-        <input
-          type="number"
-          onChange={onInputChange}
-          name="rating"
-          value={createGame.rating}
-          placeholder="Rating"
-        />
-        {error.rating && <span>{error.rating}</span>}
+    <div className={style.containForm}>
+      <form className={style.form} onSubmit={handleSubmit}>
+        <div className={style.inputText}>
+          {" "}
+          <div className={style.sectionInput}>
+            {" "}
+            <label htmlFor="">Nombre: </label>
+            <input
+              type="text"
+              onChange={onInputChange}
+              name="nombre"
+              value={createGame.nombre}
+              placeholder="Nombre del juego..."
+            />
+          </div>
+          {error.nombre && <span>{error.nombre}</span>}
+        </div>
+        <div className={style.inputText}>
+          <div className={style.sectionInput}>
+            <label htmlFor="">Imagen: </label>
+            <input
+              type="text"
+              onChange={onInputChange}
+              name="imagen"
+              value={createGame.imagen}
+              placeholder="URL de la imagen..."
+            />
+          </div>
 
-        <button type="submit">Save Game</button>
+          {error.imagen && <span>{error.imagen}</span>}
+        </div>
+        <div className={style.inputText}>
+          {" "}
+          <div className={style.sectionInput}>
+            <label htmlFor="">Descripcion: </label>
+            <input
+              type="text"
+              onChange={onInputChange}
+              name="descripcion"
+              value={createGame.descripcion}
+              placeholder="Descripcion..."
+            />
+          </div>
+          {error.descripcion && <span>{error.descripcion}</span>}
+        </div>
+        <div className={style.selectInput}>
+          {" "}
+          <select
+            className={style.formSelect}
+            name="plataformas"
+            onChange={handleSelectPlataforms}
+          >
+            <option defaultValue>Seleccionar Plataforma</option>
+            {allPlataforms?.map((plat, index) => {
+              return (
+                <option key={index} value={plat.name}>
+                  {plat.name}
+                </option>
+              );
+            })}
+          </select>
+          <div className={style.listaSelect}>
+            <ul>
+              {createGame.plataformas?.map((plat, index) => (
+                <li
+                  value={plat}
+                  onDoubleClick={() => handleDeletePlataforms(plat)}
+                  style={{ cursor: "pointer" }}
+                  key={index}
+                >
+                  {plat}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        {error.plataformas && <span>{error.plataformas}</span>}
+
+        <div className={style.inputText}>
+          <div className={style.sectionInput}>
+            {" "}
+            <label htmlFor="">Fecha de lanzamiento: </label>
+            <input
+              type="text"
+              onChange={onInputChange}
+              name="fecha_de_lanzamiento"
+              value={createGame.fecha_de_lanzamiento}
+              placeholder="Fecha de lanzamiento"
+            />
+          </div>
+          {error.fecha_de_lanzamiento && (
+            <span>{error.fecha_de_lanzamiento}</span>
+          )}{" "}
+        </div>
+
+        <div className={style.selectInput}>
+          <select
+           className={style.formSelect}
+            name="genero"
+            onChange={handleSelectGenre}
+          >
+            <option defaultValue>Select Genero</option>
+            {allGenres?.map((genre, index) => {
+              return (
+                <option key={index} value={genre.name}>
+                  {genre.name}
+                </option>
+              );
+            })}
+          </select>
+          <div className={style.listaSelect}>
+            <ul>
+              {createGame.genero?.map((gener, index) => (
+                <li
+                  value={gener}
+                  onDoubleClick={() => handleDeleteGenre(gener)}
+                  style={{ cursor: "pointer" }}
+                  key={index}
+                >
+                  {gener}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {error.genero && <span>{error.genero}</span>}
+
+        <div className={style.inputText}>
+          <div className={style.sectionInput}>
+            <label htmlFor="">Rating: </label>
+            <input
+              type="number"
+              onChange={onInputChange}
+              name="rating"
+              value={createGame.rating}
+              placeholder="Rating"
+            />
+          </div>
+
+          {error.rating && <span>{error.rating}</span>}
+        </div>
+
+        <button className={style.btnSave} type="submit">Save Game</button>
       </form>
     </div>
   );

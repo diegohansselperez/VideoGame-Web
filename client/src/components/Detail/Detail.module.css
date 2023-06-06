@@ -1,0 +1,262 @@
+.containerDetail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(
+    to left bottom,
+    #000046,
+    #002f73,
+    #005a9c,
+    #0087c0,
+    #1cb5e0
+  );
+  margin: 0;
+  padding: 0;
+  padding-top: 80px;
+  padding-bottom: 20px;
+}
+.detailTitle {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 20px;
+}
+
+.detailTitle h2 {
+  color: white;
+  text-decoration: underline;
+  padding: 5px 7px;
+}
+
+h2 {
+  margin: 0;
+}
+
+h3 {
+  margin: 0;
+}
+h5 {
+  margin: 0;
+}
+/*========================================================*/
+.containLink {
+  height: auto;
+  position: absolute;
+  top: 20px;
+  left: 15px;
+  background-color: #002f73;
+}
+
+.btnLink {
+  position: relative;
+  color: rgb(233, 233, 233);
+  padding: 7px 20px;
+  font-size: 17px;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  background-color: rgb(202, 40, 0);
+  text-decoration: none;
+  transition: 0.4s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.btnLink:hover {
+  color: white;
+  box-shadow: 0px 0px 15px rgb(202, 40, 0);
+}
+
+.btnLink span {
+  position: absolute;
+  background: #fff;
+  transition: 0.4s ease;
+}
+
+.btnLink span:nth-child(1) {
+  width: 100%;
+  height: 1px;
+  top: 0;
+  left: -100%;
+}
+.btnLink span:nth-child(2) {
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  right: -100%;
+}
+.btnLink span:nth-child(3) {
+  width: 1px;
+  height: 100%;
+  bottom: -100%;
+  left: 0;
+}
+.btnLink span:nth-child(4) {
+  width: 1px;
+  height: 100%;
+  top: -100%;
+  right: 0;
+}
+
+.btnLink:hover span:nth-child(1) {
+  left: 0;
+}
+
+.btnLink:hover span:nth-child(2) {
+  right: 0;
+}
+
+.btnLink:hover span:nth-child(3) {
+  bottom: 0;
+}
+
+.btnLink:hover span:nth-child(4) {
+  top: 0;
+}
+/*===================================================*/
+.cardDetail {
+  display: flex;
+  border: none;
+  flex-direction: column;
+  width: 80%;
+  min-height: 85vh;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0, 0.4);
+  border-radius: 30px;
+  padding: 20px;
+}
+
+.containText {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  padding: 20px 0;
+  column-gap: 20px;
+}
+
+.h2 {
+  font-size: 30px;
+  color: white;
+  padding-bottom: 10px;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid rgb(224, 222, 222);
+}
+
+.descripcionStyle {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 420px;
+}
+
+.descripcionStyle h3 {
+  width: fit-content;
+  padding: 5px 7px;
+  font-size: 25px;
+  color: rgb(149, 36, 241);
+  background-color: rgb(0, 0, 0, 0.7);
+  border-radius: 4px;
+}
+
+.descripcionStyle h5 {
+  width: 100%;
+  font-weight: 400;
+  font-size: 18px;
+  color: white;
+}
+
+.fechaLanzaStyle {
+  display: flex;
+  width: 100%;
+  gap: 15px;
+  justify-content: start;
+  align-items: center;
+}
+
+.fechaLanzaStyle h3:nth-child(1) {
+  padding: 5px 7px;
+  font-size: 25px;
+  color: rgb(149, 36, 241);
+  background-color: rgb(0, 0, 0, 0.7);
+  border-radius: 4px;
+}
+
+.fechaLanzaStyle h3:nth-child(2) {
+  font-weight: 400;
+  font-size: 18px;
+  color: white;
+}
+
+.generoStyle {
+  display: flex;
+  width: 100%;
+  gap: 15px;
+  justify-content: start;
+  align-items: center;
+}
+
+.generoStyle h3 {
+  padding: 5px 7px;
+  font-size: 25px;
+  color: rgb(149, 36, 241);
+  background-color: rgb(0, 0, 0, 0.7);
+  border-radius: 4px;
+}
+
+.generoStyle h5 {
+  font-weight: 400;
+  font-size: 18px;
+  color: white;
+}
+
+.platStyle {
+  display: flex;
+  width: 100%;
+  gap: 15px;
+  justify-content: start;
+
+  align-items: center;
+}
+
+.platStyle h3 {
+  padding: 5px 7px;
+  font-size: 25px;
+  color: rgb(149, 36, 241);
+  background-color: rgb(0, 0, 0, 0.7);
+  border-radius: 4px;
+}
+
+.platStyle h5 {
+  font-weight: 400;
+  font-size: 18px;
+  color: white;
+}
+
+/* =============================================== */
+
+.imgDiv {
+  width: 500px;
+  padding-top: 20px;
+}
+
+.imgDiv img {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  border-radius: 20px;
+  border: 3px solid rgb(149, 36, 241);
+  background-position: center;
+}
+
+.loading {
+  display: flex;
+  width: 500px;
+  height: 600px;
+  justify-content: center;
+  align-items: center;
+}

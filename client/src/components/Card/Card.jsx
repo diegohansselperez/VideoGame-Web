@@ -1,7 +1,7 @@
-import "./CardStyle.css";
+import "./Card.css";
 import { Link } from "react-router-dom";
-import { Pinwheel } from "@uiball/loaders";
 import { useEffect, useState } from "react";
+import Loading from "../Loading/Loading";
 
 const Card = (props) => {
   const [isTrue, setIsTrue] = useState(false);
@@ -58,7 +58,7 @@ const Card = (props) => {
             </div>
           </main>{" "}
           {isClick ? (
-            <div>
+            <div className="cuestionDelete">
               <p>este es el boton click</p>
               <div>
                 <button type="button" onClick={() => handleDelete(id)}>
@@ -82,7 +82,7 @@ const Card = (props) => {
         </div>
       ) : (
         <div className="loaderContain">
-          <Pinwheel size={35} lineWeight={3.5} speed={1} color="white" />
+          <Loading />
         </div>
       )}
     </>

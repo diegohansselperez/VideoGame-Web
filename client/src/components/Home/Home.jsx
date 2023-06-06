@@ -4,51 +4,13 @@ import Card from "../Card/Card";
 import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import SearchBar from "../Search/SearchBar";
-import { getAllGames , deleteVideogame } from "../../redux/actions/actions";
+import { getAllGames, deleteVideogame } from "../../redux/actions/actions";
 import Filters from "../Filters/Filters";
 import Paginate from "../Paginate/Paginate";
+import useFilters from "./useFilteres";
+import usePaginate from "./usePaginate";
 
-const useFilters = () => {
-  const [filterGames, setFilterGames] = useState({
-    genero: "all",
-    origen: "all",
-  });
 
-  const filteredVideogames = (arr) => {
-    return arr.filter((game) => {
-      return (
-        (filterGames.genero === "all" ||
-          game.genero.find(
-            (name) => name.toLowerCase() === filterGames.genero.toLowerCase()
-          )) &&
-        (filterGames.origen === "all" ||
-          String(game.created) === filterGames.origen)
-      );
-    });
-  };
-
-  return { setFilterGames, filteredVideogames };
-};
-
-const usePaginate = (newGamesFiltered) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const gamesPerPage = 15;
-
-  const firtsIndex = (currentPage - 1) * gamesPerPage;
-  const filteredGames = newGamesFiltered;
-  let lastIndex = currentPage * gamesPerPage;
-
-  const numGames = filteredGames.length;
-
-  if (lastIndex > numGames) {
-    lastIndex = numGames;
-  }
-  const records = filteredGames.slice(firtsIndex, lastIndex);
-  const numPage = Math.ceil(numGames / gamesPerPage);
-  const numbers = [...Array(numPage + 1).keys()].map((num) => num + 1);
-
-  return { currentPage, setCurrentPage, records, numbers, numPage };
-};
 
 const Home = () => {
   const [isTrue, setIsTrue] = useState(false);
@@ -56,13 +18,12 @@ const Home = () => {
   const allVideogames = useSelector((state) => state.allVideogames);
   const dispatch = useDispatch();
 
-  //Filtros desed el customHook
+  //Filtros del custom hook.
   const { filteredVideogames, setFilterGames } = useFilters();
 
   const newGamesFiltered = filteredVideogames(allVideogames);
 
-  //Paginacion con ajuste automatico dependiendo los juegos filtadros.
-
+  //Paginacion con ajuste automatico.
   const { currentPage, setCurrentPage, records, numbers, numPage } =
     usePaginate(newGamesFiltered);
 
@@ -82,7 +43,7 @@ const Home = () => {
     }
   };
 
-  //ejecuta la funcion para mandar traer todo el array de elementos.
+  //Ejecuta la funcion para mandar traer todo el array de elementos.
   useEffect(() => {
     setIsTrue(true);
     dispatch(getAllGames());
@@ -91,7 +52,7 @@ const Home = () => {
     }
   }, [dispatch, records.lenght]);
 
-  //funcion para eliminar una card
+  //Dispatch para eliminar una card
 
   const handleDelete = (id) => {
     dispatch(deleteVideogame(id));

@@ -1,11 +1,16 @@
 .App {
   width: 100vw;
   min-height: 100vh;
-  background: linear-gradient(
-    45deg,
-    rgba(0, 212, 255, 1) 0%,
-    rgba(11, 3, 45, 1) 100%
-  );
+  /* background-image: linear-gradient(
+    to left bottom,
+    #000046,
+    #002f73,
+    #005a9c,
+    #0087c0,
+    #1cb5e0
+  ); */
+  background-image: linear-gradient(to top, #412279, #391f6f, #321c65, #2b185c, #241552, #1f144a, #1b1343, #17113b, #151034, #130f2d, #120d26, #100b1f);
+
 }
 h1 {
   margin: 0;

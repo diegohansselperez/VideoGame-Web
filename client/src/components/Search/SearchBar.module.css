@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+
+.navContain {
+  width: 100%;
+  background-image: url("../img/bgifthenryfondo.gif");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 200px;
+  gap: 20px;
+  border-bottom: 5px solid rgb(149, 36, 241);
+
+}
+
+#henry_games {
+  color: #9524f1;
+  text-shadow: 10px 5px 20px #9524F1;
+}
+
+.searchContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.form {
+  display: flex;
+  gap: 15px;
+}
+
+.inputCont {
+  width: 210px;
+  display: flex;
+  background-color: transparent;
+  border: 2px solid rgb(149, 36, 241);
+  height: 30px;
+  border-radius: 40px;
+  font-family: "Lato", sans-serif;
+  align-items: center;
+}
+
+.input {
+  width: 220px;
+  background-color: transparent;
+  cursor: pointer;
+  height: 30px;
+  padding-left: 5px;
+  border: none;
+  border-radius: 40px;
+  color: aliceblue;
+}
+/*==============================================================================*/
+.form button {
+  position: relative;
+  padding: 0 20px;
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: rgb(149, 36, 241);
+  color: rgb(218, 219, 219);
+  transition: 0.4s ease;
+  overflow: hidden;
+}
+
+.form button:hover {
+  color: white;
+  box-shadow: 0px 0px 15px rgb(149, 36, 241, 0.5);
+}
+
+.form button span {
+  position: absolute;
+  background: #fff;
+  transition: 0.4s ease;
+}
+
+.form button span:nth-child(1) {
+  width: 100%;
+  height: 1px;
+  top: 0;
+  left: -100%;
+}
+.form button span:nth-child(2) {
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  right: -100%;
+}
+.form button span:nth-child(3) {
+  width: 1px;
+  height: 100%;
+  bottom: -100%;
+  left: 0;
+}
+.form button span:nth-child(4) {
+  width: 1px;
+  height: 100%;
+  top: -100%;
+  right: 0;
+}
+
+.form button:hover span:nth-child(1) {
+  left: 0;
+}
+.form button:hover span:nth-child(2) {
+  right: 0;
+}
+.form button:hover span:nth-child(3) {
+  bottom: 0;
+}
+.form button:hover span:nth-child(4) {
+  top: 0;
+}
+
+
+/*============================================================*/
+
+.navlinks button {
+  position: relative;
+  padding: 7px 20px;
+  font-size: 17px;
+  font-weight: bold;
+  background-color: #57bbb4;
+  border: none;
+  cursor: pointer;
+  color: rgb(218, 219, 219);
+  transition: 0.4s ease;
+  overflow: hidden;
+}
+
+.navlinks button:hover {
+  color: white;
+  box-shadow: 0px 0px 15px #57bbb4;
+}
+
+.navlinks button span {
+  position: absolute;
+  background: #fff;
+  transition: 0.4s ease;
+}
+
+
+.navlinks button span:nth-child(1) {
+  width: 100%;
+  height: 1px;
+  top: 0;
+  left: -100%;
+}
+.navlinks button span:nth-child(2) {
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  right: -100%;
+}
+.navlinks button span:nth-child(3) {
+  width: 1px;
+  height: 100%;
+  bottom: -100%;
+  left: 0;
+}
+.navlinks button span:nth-child(4) {
+  width: 1px;
+  height: 100%;
+  top: -100%;
+  right: 0;
+}
+
+.navlinks button:hover span:nth-child(1) {
+  left: 0;
+}
+.navlinks button:hover span:nth-child(2) {
+  right: 0;
+}
+.navlinks button:hover span:nth-child(3) {
+  bottom: 0;
+}
+.navlinks button:hover span:nth-child(4) {
+  top: 0;
+}

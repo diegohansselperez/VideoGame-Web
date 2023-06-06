@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllGenres } from "../../redux/actions/actions";
+import styles from "./Filters.module.css";
 
-const Filters = ({ filteredVideogames, onChangeFilters }) => {
+const Filters = ({ onChangeFilters }) => {
   const dispacth = useDispatch();
   //me traigo el estado AllGenres
   const { allGenres } = useSelector((state) => state);
@@ -34,8 +35,8 @@ const Filters = ({ filteredVideogames, onChangeFilters }) => {
 
   return (
     <>
-      <section>
-        <div>
+      <section className={styles.containFilters}>
+        <div className={styles.conteinSelectors}>
           <label htmlFor="genero">Genero</label>
           <select onChange={handleChangeGenre} id="genero">
             <option value="all" defaultValue>
@@ -51,7 +52,7 @@ const Filters = ({ filteredVideogames, onChangeFilters }) => {
               })}
           </select>
         </div>
-        <div>
+        <div className={styles.conteinSelectors}>
           <label htmlFor="origen">Origen</label>
           <select id="origen" onChange={handleChangeOrigin}>
             <option value="all">Todos</option>
