@@ -59,32 +59,35 @@ const Detail = () => {
             
             <section>
               <div className={style.descripcionStyle}>
-                <h3>Descripcion: </h3>
+                <h3>Description:</h3>
                 {
                   <h5>
-                    {detail.descripcion
-                      .replace(/<p>/g, "")
-                      .replace(/<\/p>/g, "")
+                    {detail.descripcion.replace(/<[^>]*>/g, "")
                       .split(".")
-                      .slice(0, 3)
+                      .slice(0, 5)
                       .join(".") + "."}
                   </h5>
                 }
               </div>
             </section>
 
-            <section>
+            <section className={style.sectionP3}>
               <div className={style.fechaLanzaStyle}>
-                <h3>Fecha de lanzamiento: </h3>
+                <h3>Release date: </h3>
                 <h3>{detail.fecha_de_lanzamiento}</h3>
               </div>
 
               <div className={style.generoStyle}>
-                <h3>Genero: </h3>
+                <h3 >Rating: </h3>
+                <h5>{detail.rating}</h5>
+              </div>
+
+              <div className={style.generoStyle}>
+                <h3>Genre: </h3>
                 <div>
                   {Array.isArray(detail.genero) ? (
                     detail.genero?.map((genr) => (
-                      <h5 key={genr.id}>~ {genr.name}</h5>
+                      <h5 key={genr.id}>{genr.name}</h5>
                     ))
                   ) : (
                     <h5>{detail.genero}</h5>
@@ -93,12 +96,12 @@ const Detail = () => {
               </div>
 
               <div className={style.platStyle}>
-                <h3>Plataformas: </h3>
+                <h3>Platforms: </h3>
                 <div>
                   {" "}
                   {Array.isArray(detail.plataformas) ? (
                     detail.plataformas?.map((plataforma, index) => {
-                      return <h5 key={index}>~ {plataforma}</h5>;
+                      return <h5 key={index}>{plataforma}</h5>;
                     })
                   ) : (
                     <h5>{detail.plataformas}</h5>

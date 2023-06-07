@@ -3,17 +3,31 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: 100%;
+
   background-image: linear-gradient(
-    to right top,
-    #30e8bf,
-    #78d97f,
-    #acc445,
-    #daa822,
-    #ff8235
+    to bottom,
+    #240046,
+    #28014d,
+    #2d0254,
+    #31045b,
+    #360662,
+    #3a0869,
+    #3f0a70,
+    #430d77,
+    #491080,
+    #4e1288,
+    #541591,
+    #5a189a
   );
-  height: 100vh;
-  padding-bottom: 30px;
+  height: 100lvh;
+  padding-bottom: 20px;
+}
+
+.containCreate h2 {
+  color: white;
+  text-decoration: underline;
+  padding-bottom: 15px;
 }
 
 .containLink_Title {
@@ -30,7 +44,7 @@
   font-weight: bold;
   outline: none;
   border: none;
-  background-color: rgb(202, 40, 0);
+  background-color: #6202d3;
   text-decoration: none;
   transition: 0.4s ease;
   overflow: hidden;
@@ -39,7 +53,7 @@
 
 .btnLink:hover {
   color: white;
-  box-shadow: 0px 0px 15px rgb(202, 40, 0);
+  box-shadow: 0px 0px 15px #6202d3;
 }
 
 .btnLink span {

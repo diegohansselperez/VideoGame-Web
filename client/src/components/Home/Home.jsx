@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { DotPulse } from "@uiball/loaders";
 import Card from "../Card/Card";
 import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
@@ -7,9 +6,10 @@ import SearchBar from "../Search/SearchBar";
 import { getAllGames, deleteVideogame } from "../../redux/actions/actions";
 import Filters from "../Filters/Filters";
 import Paginate from "../Paginate/Paginate";
-import useFilters from "./useFilteres";
-import usePaginate from "./usePaginate";
+import Loading from "../Loading/Loading";
 
+import useFilters from "../../hooks/useFilteres";
+import usePaginate from "../../hooks/usePaginate";
 
 
 const Home = () => {
@@ -24,8 +24,7 @@ const Home = () => {
   const newGamesFiltered = filteredVideogames(allVideogames);
 
   //Paginacion con ajuste automatico.
-  const { currentPage, setCurrentPage, records, numbers, numPage } =
-    usePaginate(newGamesFiltered);
+  const { currentPage, setCurrentPage, records, numbers, numPage } = usePaginate(newGamesFiltered);
 
   const prePage = () => {
     if (currentPage !== 1) {
@@ -40,7 +39,7 @@ const Home = () => {
   const nextPage = () => {
     if (currentPage !== numPage) {
       setCurrentPage(currentPage + 1);
-    }
+    } 
   };
 
   //Ejecuta la funcion para mandar traer todo el array de elementos.
@@ -67,6 +66,7 @@ const Home = () => {
         numbers={numbers}
         nextPage={nextPage}
         changeToPage={changeToPage}
+        currentPage={currentPage}
       />
       {isTrue ? (
         <main>
@@ -79,6 +79,7 @@ const Home = () => {
                 image={game.imagen}
                 plataforms={game.plataformas}
                 genero={game.genero}
+                rating={game.rating}
                 handleDelete={handleDelete}
               />
             );
@@ -86,7 +87,7 @@ const Home = () => {
         </main>
       ) : (
         <div>
-          <DotPulse size={80} lineWeight={3.5} speed={1} color="white" />
+          <Loading />
         </div>
       )}
     </div>

@@ -6,7 +6,8 @@ import Loading from "../Loading/Loading";
 const Card = (props) => {
   const [isTrue, setIsTrue] = useState(false);
   const [isClick, setIsClick] = useState(false);
-  const { id, name, image, plataforms, genero, handleDelete } = props;
+
+  const { id, name, image, plataforms, genero, rating, handleDelete } = props;
 
   useEffect(() => {
     setTimeout(() => {
@@ -22,19 +23,21 @@ const Card = (props) => {
     <>
       {isTrue ? (
         <div className="container" key={id}>
+          <img
+            className="bannerImage"
+            src={image}
+            alt={name}
+          />
+          <div>
+            <h1 style={name.length > 22 ? { fontSize: "2rem" } : null}>
+              {name ? name.substring(0, 32) : ""}
+            </h1>
+          </div>
           <main className="wrapper">
-            <img
-              className="banner-image"
-              width="200px"
-              height="170px"
-              src={image}
-              alt={name}
-            />
-            <div>
-              <h1>{name ? name.substring(0, 32) : ""}</h1>
-            </div>
-
             <div className="containArrays">
+              <div style={{color:"white"}}>
+                {rating}
+              </div>
               <div>
                 {Array.isArray(plataforms) ? (
                   plataforms
@@ -48,8 +51,8 @@ const Card = (props) => {
               </div>
               <div>
                 {Array.isArray(genero) ? (
-                  genero?.map((genre) => {
-                    return <h4 key={genre}>{genre}</h4>;
+                  genero?.map((genre, index) => {
+                    return <h4 key={index}>{genre}</h4>;
                   })
                 ) : (
                   <h4>{genero}</h4>
@@ -59,12 +62,20 @@ const Card = (props) => {
           </main>{" "}
           {isClick ? (
             <div className="cuestionDelete">
-              <p>este es el boton click</p>
-              <div>
-                <button type="button" onClick={() => handleDelete(id)}>
-                  Si
+              <p>Are you sure you want to delete this video game?</p>
+              <div className="containBtns">
+                <button
+                  className="btnYes"
+                  type="button"
+                  onClick={() => handleDelete(id)}
+                >
+                  Yes
                 </button>
-                <button type="button" onClick={() => setIsClick(false)}>
+                <button
+                  className="btnNo"
+                  type="button"
+                  onClick={() => setIsClick(false)}
+                >
                   No
                 </button>
               </div>

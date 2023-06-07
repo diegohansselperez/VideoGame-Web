@@ -14,7 +14,10 @@ const usePaginate = (newGamesFiltered) => {
     lastIndex = numGames;
   }
   const records = filteredGames.slice(firtsIndex, lastIndex);
-  const numPage = Math.ceil(numGames / gamesPerPage);
+  const numPage = Math.round(numGames / gamesPerPage);
+  
+  
+
   const numbers = [...Array(numPage + 1).keys()].map((num) => num + 1);
 
   return { currentPage, setCurrentPage, records, numbers, numPage };

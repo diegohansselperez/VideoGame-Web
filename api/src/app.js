@@ -41,6 +41,7 @@ server.use('/', routes);
   }, 1000);
 }
 fetchAndSave()
+
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   const status = err.status || 500;

@@ -8,7 +8,32 @@
     background-image: url("../img/giphy-1.gif");
 }
 
-.backgraundLanding button{
+
+.containBtn {
+    width: 420px;
+    height: 320px;
+    background-color: rgb(0, 0, 0, 0.8);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.containBtn h3 {
+    color: white;
+    position: absolute;
+    top: 300px;
+}
+
+.containBtn .henry {
+    color: #f20094;
+    font-size: 25px;
+    font-style: normal;
+}
+
+.containBtn button{
+    position: absolute;
     border: none;
     cursor: pointer;
     font-size: 25px;
@@ -16,8 +41,35 @@
     color: white;
     border-radius: 10px;
     background-image: radial-gradient(circle, #ff0079, #f20094, #d600b4, #a400d7, #2e23f8);
+    transition: .4s ease;
 }
 
-.backgraundLanding button:hover {
-    box-shadow: 0px 0px 10px  #ff0079;
+.containBtn button:hover {
+    box-shadow: 0px 3px 20px  #ff0079;
+}
+
+
+.containBtn .article {
+    position: absolute;
+    bottom: 230px;
+    width: 30%;
+}
+
+.containBtn .article p {
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.containBtn .article p span {
+    color: yellow;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 10px;
+    font-weight: bolder;
+}
+
+.containBtn .article a {
+    color: #f20094;
+    cursor: pointer;
 }

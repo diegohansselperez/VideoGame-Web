@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postCreateGame } from "../../redux/actions/actions.js";
-import validate from "./validate.js";
+import validate from "../../hooks/validate.js";
 import style from "./Form.module.css";
 
 const Form = ({ allGenres, allPlataforms }) => {
@@ -17,7 +17,7 @@ const Form = ({ allGenres, allPlataforms }) => {
     genero: [],
     rating: 0,
   });
-  
+
   const [error, setError] = useState({});
 
   const dispatch = useDispatch();
@@ -38,9 +38,10 @@ const Form = ({ allGenres, allPlataforms }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const validationErrors = validate(createGame);
     setError(validationErrors);
-    if (Object.values(error).length > 0) {
+    if (Object.values(error).length > 0 && Object.values(createGame.nombre).length <= 0) {
       return alert(
         "Porfavor revisa tus inputs y los requerimientos que se te piden"
       );
@@ -62,8 +63,6 @@ const Form = ({ allGenres, allPlataforms }) => {
   };
 
   //agregar a Plataformas
-  //!Leer esto
-  //En resumen, esta función se encarga de manejar la selección de plataformas en un formulario. Verifica si la plataforma seleccionada es válida y no está repetida en la matriz existente de plataformas del estado createGame. Si se cumplen ambas condiciones, actualiza el estado createGame agregando la nueva plataforma seleccionada.
   const handleSelectPlataforms = (e) => {
     if (
       e.target.value !== "plataformas" &&
@@ -110,7 +109,7 @@ const Form = ({ allGenres, allPlataforms }) => {
           {" "}
           <div className={style.sectionInput}>
             {" "}
-            <label htmlFor="">Nombre: </label>
+            <label htmlFor="">Name: </label>
             <input
               type="text"
               onChange={onInputChange}
@@ -123,7 +122,7 @@ const Form = ({ allGenres, allPlataforms }) => {
         </div>
         <div className={style.inputText}>
           <div className={style.sectionInput}>
-            <label htmlFor="">Imagen: </label>
+            <label htmlFor="">Image: </label>
             <input
               type="text"
               onChange={onInputChange}
@@ -138,7 +137,7 @@ const Form = ({ allGenres, allPlataforms }) => {
         <div className={style.inputText}>
           {" "}
           <div className={style.sectionInput}>
-            <label htmlFor="">Descripcion: </label>
+            <label htmlFor="">Description: </label>
             <input
               type="text"
               onChange={onInputChange}
@@ -156,7 +155,7 @@ const Form = ({ allGenres, allPlataforms }) => {
             name="plataformas"
             onChange={handleSelectPlataforms}
           >
-            <option defaultValue>Seleccionar Plataforma</option>
+            <option defaultValue>Select Platform</option>
             {allPlataforms?.map((plat, index) => {
               return (
                 <option key={index} value={plat.name}>
@@ -185,7 +184,7 @@ const Form = ({ allGenres, allPlataforms }) => {
         <div className={style.inputText}>
           <div className={style.sectionInput}>
             {" "}
-            <label htmlFor="">Fecha de lanzamiento: </label>
+            <label htmlFor="">Relasing Date: </label>
             <input
               type="text"
               onChange={onInputChange}
@@ -201,11 +200,11 @@ const Form = ({ allGenres, allPlataforms }) => {
 
         <div className={style.selectInput}>
           <select
-           className={style.formSelect}
+            className={style.formSelect}
             name="genero"
             onChange={handleSelectGenre}
           >
-            <option defaultValue>Select Genero</option>
+            <option defaultValue>Select Genre</option>
             {allGenres?.map((genre, index) => {
               return (
                 <option key={index} value={genre.name}>
@@ -247,7 +246,9 @@ const Form = ({ allGenres, allPlataforms }) => {
           {error.rating && <span>{error.rating}</span>}
         </div>
 
-        <button className={style.btnSave} type="submit">Save Game</button>
+        <button className={style.btnSave} type="submit">
+          Save Game
+        </button>
       </form>
     </div>
   );

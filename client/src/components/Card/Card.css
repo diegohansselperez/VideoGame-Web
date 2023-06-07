@@ -3,8 +3,7 @@
 
 .container {
   width: 300px;
-  max-height: 550px;
-  height: 450px;
+  min-height: 450px;
   background-color: rgba(17, 25, 40, 0.25);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.125);
@@ -13,20 +12,28 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   text-align: center;
+}
+
+.bannerImage {
+  width: 270px;
+  height: 200px;
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 100%;
   margin: 0 0;
+  padding: 0;
 }
 
 .containArrays {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 15px;
 }
@@ -42,7 +49,7 @@ h1 {
   font-family: "Righteous", sans-serif;
   color: rgba(255, 255, 255, 0.98);
   text-transform: uppercase;
-  font-size: 2.4rem;
+  font-size: 2.3rem;
 }
 
 h4 {
@@ -113,7 +120,8 @@ p {
 
 .loaderContain {
   display: flex;
-  width: 300px;
+  flex-wrap: wrap;
+  min-width: 340px;
   height: 450px;
   justify-content: center;
   align-items: center;
@@ -125,11 +133,50 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgba(37, 37, 37, 0.7);
+  background-color: rgba(0, 0, 0, 0.7);
   width: 250px;
+  color: #fff;
+  font-weight: 800;
   height: 100px;
   border: 1px solid rgb(85, 85, 85);
   position: absolute;
   bottom: 20px;
   border-radius: 10px;
+}
+
+.containBtns {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  align-items: center;
+}
+
+.btnYes {
+  padding: 4px 7px;
+  background-color: rgb(0, 255, 255);
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  color: rgb(0, 0, 0, .8);
+}
+
+.btnYes:hover {
+  background-color: rgb(0, 201, 201);
+}
+
+.btnNo {
+  padding: 4px 7px;
+  background-color: rgb(255, 0, 55);
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+}
+
+.btnNo:hover{
+  background-color: rgb(184, 0, 40);
 }

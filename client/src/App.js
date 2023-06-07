@@ -1,6 +1,3 @@
-// import { useEffect, useState } from "react";
-// import axios from "axios";
-
 import Landing from "./components/Landing/Landing.jsx";
 import Detail from "./components/Detail/Detail.jsx";
 import { Routes, Route } from "react-router-dom";

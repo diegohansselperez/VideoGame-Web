@@ -79,10 +79,8 @@ const createVideogame = async (req, res) => {
   }
 };
 
-
 module.exports = {
   getAllVideogames,
   getIdVideogame,
   createVideogame,
-
 };

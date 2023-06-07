@@ -3,13 +3,13 @@ import "./LoadingStyle.css"
 
 const Loading = () => {
   return (
-    <div class="pinwheel">
-  <div class="pinwheel__line"></div>
-  <div class="pinwheel__line"></div>
-  <div class="pinwheel__line"></div>
-  <div class="pinwheel__line"></div>
-  <div class="pinwheel__line"></div>
-  <div class="pinwheel__line"></div>  
+    <div className="pinwheel">
+  <div className="pinwheel__line"></div>
+  <div className="pinwheel__line"></div>
+  <div className="pinwheel__line"></div>
+  <div className="pinwheel__line"></div>
+  <div className="pinwheel__line"></div>
+  <div className="pinwheel__line"></div>  
 </div>
   )
 }

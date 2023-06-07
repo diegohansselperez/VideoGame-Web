@@ -9,7 +9,7 @@ const getVideogameByName = async (name) => {
       nombre: { [Op.iLike]: `%${name}%` },
     },
   });
-  console.log("games DB", dbResults);
+  
   const dbGames = dbResults.map((game) => {
     return {
       id: game.id,
@@ -21,7 +21,7 @@ const getVideogameByName = async (name) => {
     };
   });
 
-  console.log("games DB mapeado", dbGames);
+  
 
   const { data } = await axios.get(
     `https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`

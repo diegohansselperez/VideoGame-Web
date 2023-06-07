@@ -10,7 +10,7 @@ const getAllPlatforms = async () => {
                 name: plat.name,
             };
         });
-        console.log("plataforms", platforms);
+        
         return platforms;
     } catch (error) {
         throw new Error(error);

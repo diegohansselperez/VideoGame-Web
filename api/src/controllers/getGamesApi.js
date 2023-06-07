@@ -12,6 +12,7 @@ const getGamesApi = async () => {
     let api = await axios.all(apiurls.map((url) => axios.get(url)));
 
     api = api?.map((response) => response.data.results).flat();
+    
     api = api?.map((result) => {
       return {
         id: result.id,
